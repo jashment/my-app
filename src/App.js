@@ -6,20 +6,29 @@ class App extends Component {
   
   state = {
     persons: [
-      {name: 'Jordan', age: 28},
-      {name: 'Amy', age: 27},
-      {name: 'Eli', age: 0},
+      {id: 'assdfa', name: 'Jordan', age: 28},
+      {id: 'oofo', name: 'Amy', age: 27},
+      {id: 'oougoo', name: 'Eli', age: 0},
     ],
     showPersons: false,
   }
   
   deletePersonHandler = (personIndex) => {
-    const persons = this.state.persons;
+    // const persons = this.state.persons.slice();
+    const persons = [...this.state.persons]; //spread operator
     persons.splice(personIndex, 1);
     this.setState({persons: persons});
   }
 
-  nameChangedHandler = (event) => {
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    });
+    
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+    
     this.setState({
       persons: [
         {name: 'Jordan the Destroyer', age: 28},
@@ -52,7 +61,9 @@ class App extends Component {
             return <Person 
             click={() => this.deletePersonHandler(index)} 
             name={person.name} 
-            age={person.age} />
+            age={person.age}
+            key={person.id}
+            changed={(event) => this.nameChangedHandler(event, person.id)} />
           })}
           </div>
       );
