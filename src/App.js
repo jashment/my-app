@@ -29,13 +29,13 @@ class App extends Component {
       ...this.state.persons[personIndex]
     };
     
+    person.name = event.target.value;
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+    
     this.setState({
-      persons: [
-        {name: 'Jordan the Destroyer', age: 28},
-        {name: event.target.value, age: 27},
-        {name: 'Baby Eli', age: 0},
-        ]
-    })
+      persons: persons
+    });
   }
   
   togglePersonsHandler = () => {
