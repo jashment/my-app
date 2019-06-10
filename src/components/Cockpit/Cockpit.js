@@ -16,10 +16,10 @@ const cockpit = (props) => {
     }
     
     return (
-        <div>
+        <div className={classes.Cockpit}>
             <h1>Hi, I'm a React App!</h1>
             <p className={assignedClasses.join(' ')}>I'm a Paragraph!</p>
-            <button className={btnClass} onClick={this.togglePersonsHandler}>Toggle Persons</button>
+            <button className={btnClass} onClick={props.clicked}>Toggle Persons</button>
         </div>
     );
 };
